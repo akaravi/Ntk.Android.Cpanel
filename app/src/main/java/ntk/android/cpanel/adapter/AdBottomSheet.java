@@ -1,14 +1,16 @@
 package ntk.android.cpanel.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -19,6 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.android.cpanel.R;
+import ntk.android.cpanel.activity.News.NewsContent.ActMain;
 import ntk.android.cpanel.utillity.FontManager;
 import ntk.base.api.core.entity.CoreCpMainMenu;
 
@@ -48,7 +51,7 @@ public class AdBottomSheet extends RecyclerView.Adapter<AdBottomSheet.ViewHolder
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                context.startActivity(new Intent(context, ActMain.class));
             }
         });
     }

@@ -1,15 +1,18 @@
 package ntk.android.cpanel.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -42,6 +45,13 @@ public class AdMain extends RecyclerView.Adapter<AdMain.ViewHolderMain> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderMain holder, int position) {
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        int deviceScreenUtilsWidth = displayMetrics.widthPixels;
+        ViewGroup.LayoutParams params = holder.root.getLayoutParams();
+        params.width = params.height = deviceScreenUtilsWidth / 4 - 12;
+        holder.root.setLayoutParams(params);
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheOnDisk(true).build();
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));

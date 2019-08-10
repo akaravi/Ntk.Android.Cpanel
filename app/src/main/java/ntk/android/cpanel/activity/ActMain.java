@@ -1,13 +1,14 @@
 package ntk.android.cpanel.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -67,7 +68,7 @@ public class ActMain extends AppCompatActivity {
         ICoreUser iCore = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ICoreUser.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(ActMain.this);
-        headers.put("Authorization", EasyPreference.with(ActMain.this).getString("LoginCookie", ""));
+        headers.put("Authorization", EasyPreference.with(ActMain.this).getString(EasyPreference.LOGIN_COOKE, ""));
         Observable<CoreUserResponse> call = iCore.SelectCurrentSite(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -78,7 +79,7 @@ public class ActMain extends AppCompatActivity {
 
                     @Override
                     public void onNext(CoreUserResponse response) {
-                        EasyPreference.with(ActMain.this).addString("SiteCookie", response.UserTicketToken);
+                        EasyPreference.with(ActMain.this).addString(EasyPreference.SITE_COOKE, response.UserTicketToken);
                         getMenu();
                     }
 
@@ -101,8 +102,8 @@ public class ActMain extends AppCompatActivity {
         ICoreCpMainMenu iCore = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ICoreCpMainMenu.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(ActMain.this);
-        headers.put("Cookie", EasyPreference.with(ActMain.this).getString("LoginCookie", ""));
-        headers.put("Authorization", EasyPreference.with(ActMain.this).getString("SiteCookie", ""));
+        headers.put("Cookie", EasyPreference.with(ActMain.this).getString(EasyPreference.LOGIN_COOKE, ""));
+        headers.put("Authorization", EasyPreference.with(ActMain.this).getString(EasyPreference.SITE_COOKE, ""));
         Observable<CoreCpMainMenuResponse> call = iCore.GetAllMenu(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

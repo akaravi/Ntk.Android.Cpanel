@@ -1,15 +1,17 @@
 package ntk.android.cpanel.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -24,6 +26,7 @@ import ntk.android.cpanel.R;
 import ntk.android.cpanel.activity.ActMain;
 import ntk.android.cpanel.config.ConfigRestHeader;
 import ntk.android.cpanel.config.ConfigStaticValue;
+import ntk.android.cpanel.utillity.AppUtill;
 import ntk.android.cpanel.utillity.FontManager;
 import ntk.base.api.core.entity.CoreSite;
 
@@ -46,9 +49,10 @@ public class AdSelectSite extends RecyclerView.Adapter<AdSelectSite.ViewHolderSe
     @NonNull
     @Override
     public ViewHolderSelectSite onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolderSelectSite(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_recycler_select_site, parent, false));
+        return new ViewHolderSelectSite(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_select_site, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolderSelectSite holder, int position) {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
@@ -56,13 +60,16 @@ public class AdSelectSite extends RecyclerView.Adapter<AdSelectSite.ViewHolderSe
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
         ImageLoader.getInstance().displayImage(list.get(position).MainImageSrc, holder.img, options, null);
         holder.txt.get(0).setText(list.get(position).Title);
-        holder.txt.get(1).setText(holder.txt.get(1).getText() + String.valueOf(list.get(position).Id));
-        holder.txt.get(2).setText(holder.txt.get(2).getText() + list.get(position).Domain);
-        holder.txt.get(3).setText(holder.txt.get(3).getText() + list.get(position).CreatedDate);
-        if (list.get(position).ExpireDate != null)
-            holder.txt.get(4).setText(holder.txt.get(4).getText() + list.get(position).ExpireDate);
+        holder.txt.get(1).setText("کد سیستمی : " + list.get(position).Id);
+        holder.txt.get(2).setText("دامنه : " + list.get(position).Domain);
+        if (list.get(position).CreatedDate != null)
+            holder.txt.get(3).setText("تاریخ ثبت : " + AppUtill.GregorianToPersian(list.get(position).CreatedDate));
         else
-            holder.txt.get(4).setText(holder.txt.get(4).getText() + "-");
+            holder.txt.get(3).setText("تاریخ ثبت : " + "-");
+        if (list.get(position).ExpireDate != null)
+            holder.txt.get(4).setText("تاریخ انقضا : " + AppUtill.GregorianToPersian(list.get(position).ExpireDate));
+        else
+            holder.txt.get(4).setText("تاریخ انقضا : " + "-");
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

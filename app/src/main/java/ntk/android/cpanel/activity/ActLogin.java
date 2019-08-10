@@ -2,7 +2,6 @@ package ntk.android.cpanel.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,8 +66,8 @@ public class ActLogin extends AppCompatActivity {
     private void initialization() {
         rememberMe.setChecked(true);
         if (EasyPreference.with(ActLogin.this).getBoolean("RememberMe", true)) {
-            Username.setText(EasyPreference.with(this).getString("Username", ""));
-            Password.setText(EasyPreference.with(this).getString("Password", ""));
+            Username.setText(EasyPreference.with(this).getString(EasyPreference.USERNAME, ""));
+            Password.setText(EasyPreference.with(this).getString(EasyPreference.PASSWORD, ""));
         }
         lagList.add(0, "فارسی");
         lagList.add(1, "English");
@@ -130,9 +131,9 @@ public class ActLogin extends AppCompatActivity {
                     @Override
                     public void onNext(CoreUserResponse response) {
                         if (response.IsSuccess) {
-                            EasyPreference.with(ActLogin.this).addString("Username", request.username);
-                            EasyPreference.with(ActLogin.this).addString("Password", request.pwd);
-                            EasyPreference.with(ActLogin.this).addString("LoginCookie", response.UserTicketToken);
+                            EasyPreference.with(ActLogin.this).addString(EasyPreference.USERNAME, request.username);
+                            EasyPreference.with(ActLogin.this).addString(EasyPreference.PASSWORD, request.pwd);
+                            EasyPreference.with(ActLogin.this).addString(EasyPreference.LOGIN_COOKE, response.UserTicketToken);
                             startActivity(new Intent(ActLogin.this, ActSelectSite.class));
                             finish();
                         } else {

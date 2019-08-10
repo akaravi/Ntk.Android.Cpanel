@@ -1,11 +1,12 @@
 package ntk.android.cpanel.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +59,7 @@ public class ActSelectSite extends AppCompatActivity {
         ICoreSite iCore = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(ICoreSite.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(this);
-        headers.put("Authorization", EasyPreference.with(ActSelectSite.this).getString("LoginCookie", ""));
+        headers.put("Authorization", EasyPreference.with(ActSelectSite.this).getString(EasyPreference.LOGIN_COOKE, ""));
         Observable<CoreSiteResponse> call = iCore.GetAllWithAlias(headers, request);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
