@@ -2,6 +2,7 @@ package ntk.android.cpanel.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,11 @@ public class AdBottomSheet extends RecyclerView.Adapter<AdBottomSheet.ViewHolder
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ActMain.class));
+                switch (list.get(position).Title) {
+                    case "محتوای اخبار":
+                        context.startActivity(new Intent(context, ActMain.class));
+                        break;
+                }
             }
         });
     }

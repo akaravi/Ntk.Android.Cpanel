@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
@@ -29,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblLoginActLogin"
             android:layout_margin="30dp"
-            android:background="@drawable/etxt_login_background"
+            android:background="@drawable/edit_text_background"
             android:gravity="center"
             android:hint="نام کاربری"
             android:inputType="textEmailAddress"
@@ -44,7 +43,7 @@
             android:layout_below="@+id/txtUsernameActLogin"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/etxt_login_background"
+            android:background="@drawable/edit_text_background"
             android:gravity="center"
             android:hint="رمز عبور"
             android:inputType="textPassword"
@@ -58,9 +57,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtPasswordActLogin"
             android:layout_margin="30dp"
-            android:background="@drawable/etxt_login_background"
-            android:gravity="center"
-            android:padding="10dp" />
+            android:padding="8dp"
+            android:background="@drawable/edit_text_background"
+            android:gravity="center" />
 
         <CheckBox
             android:id="@+id/checkboxRememberMeActLogin"
@@ -92,7 +91,7 @@
             android:layout_below="@+id/checkboxRememberMeActLogin"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/etxt_login_background"
+            android:background="@drawable/edit_text_background"
             android:gravity="center"
             android:text="ورود"
             android:textAllCaps="false"

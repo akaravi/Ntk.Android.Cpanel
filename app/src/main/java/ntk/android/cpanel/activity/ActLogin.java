@@ -31,6 +31,7 @@ import ntk.android.cpanel.R;
 import ntk.android.cpanel.config.ConfigRestHeader;
 import ntk.android.cpanel.config.ConfigStaticValue;
 import ntk.android.cpanel.utillity.EasyPreference;
+import ntk.android.cpanel.utillity.FontManager;
 import ntk.base.api.core.interfase.ICoreUser;
 import ntk.base.api.core.model.CoreUserResponse;
 import ntk.base.api.core.model.CoreUserloginRequest;
@@ -40,6 +41,8 @@ public class ActLogin extends AppCompatActivity {
 
     @BindView(R.id.lblLoginActLogin)
     TextView lblLogin;
+    @BindView(R.id.txtRememberMe)
+    TextView lblRememberMe;
     @BindView(R.id.txtUsernameActLogin)
     EditText Username;
     @BindView(R.id.txtPasswordActLogin)
@@ -64,6 +67,11 @@ public class ActLogin extends AppCompatActivity {
     }
 
     private void initialization() {
+        Username.setTypeface(FontManager.GetTypeface(this,FontManager.IranSans));
+        Password.setTypeface(FontManager.GetTypeface(this,FontManager.IranSans));
+        lblLogin.setTypeface(FontManager.GetTypeface(this,FontManager.IranSans));
+        lblRememberMe.setTypeface(FontManager.GetTypeface(this,FontManager.IranSans));
+        btnLogin.setTypeface(FontManager.GetTypeface(this,FontManager.IranSans));
         rememberMe.setChecked(true);
         if (EasyPreference.with(ActLogin.this).getBoolean("RememberMe", true)) {
             Username.setText(EasyPreference.with(this).getString(EasyPreference.USERNAME, ""));
@@ -73,7 +81,7 @@ public class ActLogin extends AppCompatActivity {
         lagList.add(1, "English");
         lagList.add(2, "German");
         lagList.add(3, "عربی");
-        Lag.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lagList));
+        Lag.setAdapter(new ArrayAdapter<String>(this, R.layout.row_spinner, lagList));
         Lag.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

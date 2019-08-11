@@ -19,7 +19,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgInfo"
+                android:id="@+id/imgInfoActNewsContentAdd"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
@@ -27,7 +27,7 @@
                 android:src="@drawable/ic_more" />
 
             <TextView
-                android:id="@+id/lblInfo"
+                android:id="@+id/lblInfoActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="اطلاعات الزامی"
@@ -51,7 +51,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lblStatus"
+                android:id="@+id/lblStatusActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -60,13 +60,14 @@
                 android:textSize="14sp" />
 
             <Spinner
+                android:id="@+id/spinnerStatusActNewsContentAdd"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/edit_text_background" />
 
             <TextView
-                android:id="@+id/lblTitle"
+                android:id="@+id/lblTitleActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -75,7 +76,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtTitle"
+                android:id="@+id/txtTitleActNewsContentAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -85,7 +86,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblDescription"
+                android:id="@+id/lblDescriptionActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -94,7 +95,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtDescription"
+                android:id="@+id/txtDescriptionActNewsContentAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -104,7 +105,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblCategory"
+                android:id="@+id/lblCategoryActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -112,18 +113,15 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/txtCategory"
+            <Spinner
+                android:id="@+id/spinnerCategoryActNewsContentAdd"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
+                android:background="@drawable/edit_text_background" />
 
             <TextView
-                android:id="@+id/lblStartDate"
+                android:id="@+id/lblStartDateActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -132,7 +130,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/startDate"
+                android:id="@+id/startDateActNewsContentAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -143,7 +141,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblEndDate"
+                android:id="@+id/lblEndDateActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -152,7 +150,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/EndDate"
+                android:id="@+id/EndDateActNewsContentAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -172,7 +170,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/img"
+                android:id="@+id/imgActNewsContentAdd"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
@@ -180,7 +178,7 @@
                 android:src="@drawable/ic_more" />
 
             <TextView
-                android:id="@+id/lbl"
+                android:id="@+id/lblActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="محتوای مظالب"
@@ -204,7 +202,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lblScore"
+                android:id="@+id/lblScoreActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -213,7 +211,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtScore"
+                android:id="@+id/txtScoreActNewsContentAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -223,7 +221,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblSticker"
+                android:id="@+id/lblStickerActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -232,7 +230,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtSticker"
+                android:id="@+id/txtStickerActNewsContentAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -242,7 +240,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblKey"
+                android:id="@+id/lblKeyActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -251,7 +249,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtKey"
+                android:id="@+id/txtKeyActNewsContentAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -261,7 +259,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblComplete"
+                android:id="@+id/lblCompleteActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -270,7 +268,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtComplete"
+                android:id="@+id/txtCompleteActNewsContentAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -289,7 +287,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgFile"
+                android:id="@+id/imgFileActNewsContentAdd"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
@@ -297,7 +295,7 @@
                 android:src="@drawable/ic_more" />
 
             <TextView
-                android:id="@+id/lblFile"
+                android:id="@+id/lblFileActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="فایل های پیوست"
@@ -320,16 +318,34 @@
             android:layout_marginRight="30dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/lblMainImage"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="عکس اصلی"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+                android:orientation="horizontal">
 
-            <EditText
+                <ImageView
+                    android:id="@+id/imgMainImageAttach"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:rotation="45"
+                    android:src="@drawable/ic_attach" />
+
+                <TextView
+                    android:id="@+id/lblMainImageActNewsContentAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="عکس اصلی"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -338,16 +354,34 @@
                 android:textColor="@color/colorGray"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/lblPodcast"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="پادکست"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+                android:orientation="horizontal">
 
-            <EditText
+                <ImageView
+                    android:id="@+id/imgPadcastAttach"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:rotation="45"
+                    android:src="@drawable/ic_attach" />
+
+                <TextView
+                    android:id="@+id/lblPodcastActNewsContentAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="پادکست"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -356,16 +390,35 @@
                 android:textColor="@color/colorGray"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/lblMovie"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="فیلم"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+                android:orientation="horizontal">
 
-            <EditText
+                <ImageView
+                    android:id="@+id/imgMovieAttach"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:rotation="45"
+                    android:src="@drawable/ic_attach" />
+
+                <TextView
+                    android:id="@+id/lblMovieActNewsContentAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="فیلم"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/txtMovieActNewsContentAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -374,23 +427,37 @@
                 android:textColor="@color/colorGray"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/lblAttach"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="فایل های ضمیمه"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
-
-            <EditText
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgExtraFileAttach"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:rotation="45"
+                    android:src="@drawable/ic_attach" />
+
+                <TextView
+                    android:id="@+id/lblAttachActNewsContentAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="فایل های ضمیمه"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -402,7 +469,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgLocation"
+                android:id="@+id/imgLocationActNewsContentAdd"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
@@ -410,7 +477,7 @@
                 android:src="@drawable/ic_more" />
 
             <TextView
-                android:id="@+id/lblLocation"
+                android:id="@+id/lblLocationActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="موقعیت مکانی"
@@ -439,7 +506,7 @@
                 android:layout_marginBottom="15dp" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/btn"
+                android:id="@+id/btnActNewsContentAdd"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="15dp"
@@ -448,7 +515,7 @@
                 app:cardCornerRadius="10dp">
 
                 <TextView
-                    android:id="@+id/txtBtn"
+                    android:id="@+id/txtBtnActNewsContentAdd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

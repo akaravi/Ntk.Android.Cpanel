@@ -19,7 +19,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgInfo"
+                android:id="@+id/imgInfoActNewsContentEdit"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
@@ -27,7 +27,7 @@
                 android:src="@drawable/ic_more" />
 
             <TextView
-                android:id="@+id/lblInfo"
+                android:id="@+id/lblInfoActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="اطلاعات الزامی"
@@ -51,7 +51,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lblStatus"
+                android:id="@+id/lblStatusActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -60,13 +60,14 @@
                 android:textSize="14sp" />
 
             <Spinner
+                android:id="@+id/spinnerStatusActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/edit_text_background" />
 
             <TextView
-                android:id="@+id/lblTitle"
+                android:id="@+id/lblTitleActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -75,7 +76,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtTitle"
+                android:id="@+id/txtTitleActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -85,7 +86,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblDescription"
+                android:id="@+id/lblDescriptionActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -94,7 +95,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtDescription"
+                android:id="@+id/txtDescriptionActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -104,7 +105,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblCategory"
+                android:id="@+id/lblCategoryActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -112,18 +113,15 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/txtCategory"
+            <Spinner
+                android:id="@+id/spinnerCategoryActNewsContentEdit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
+                android:background="@drawable/edit_text_background" />
 
             <TextView
-                android:id="@+id/lblStartDate"
+                android:id="@+id/lblStartDateActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -132,7 +130,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/startDate"
+                android:id="@+id/startDateActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -143,7 +141,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblEndDate"
+                android:id="@+id/lblEndDateActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -152,7 +150,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/EndDate"
+                android:id="@+id/EndDateActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -172,7 +170,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/img"
+                android:id="@+id/imgActNewsContentEdit"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
@@ -180,7 +178,7 @@
                 android:src="@drawable/ic_more" />
 
             <TextView
-                android:id="@+id/lbl"
+                android:id="@+id/lblActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="محتوای مظالب"
@@ -204,7 +202,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lblScore"
+                android:id="@+id/lblScoreActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -213,7 +211,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtScore"
+                android:id="@+id/txtScoreActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -223,7 +221,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblSticker"
+                android:id="@+id/lblStickerActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -232,7 +230,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtSticker"
+                android:id="@+id/txtStickerActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -242,7 +240,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblKey"
+                android:id="@+id/lblKeyActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -251,7 +249,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtKey"
+                android:id="@+id/txtKeyActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -261,7 +259,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblComplete"
+                android:id="@+id/lblCompleteActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -270,7 +268,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtComplete"
+                android:id="@+id/txtCompleteActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -289,7 +287,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgFile"
+                android:id="@+id/imgFileActNewsContentEdit"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
@@ -297,7 +295,7 @@
                 android:src="@drawable/ic_more" />
 
             <TextView
-                android:id="@+id/lblFile"
+                android:id="@+id/lblFileActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="فایل های پیوست"
@@ -321,7 +319,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lblMainImage"
+                android:id="@+id/lblMainImageActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -339,7 +337,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblPodcast"
+                android:id="@+id/lblPodcastActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -357,7 +355,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblMovie"
+                android:id="@+id/lblMovieActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -375,7 +373,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblAttach"
+                android:id="@+id/lblAttachActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -402,7 +400,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgLocation"
+                android:id="@+id/imgLocationActNewsContentEdit"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
@@ -410,7 +408,7 @@
                 android:src="@drawable/ic_more" />
 
             <TextView
-                android:id="@+id/lblLocation"
+                android:id="@+id/lblLocationActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="موقعیت مکانی"
@@ -447,7 +445,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgMoreInfo"
+                android:id="@+id/imgMoreInfoActNewsContentEdit"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
@@ -455,7 +453,7 @@
                 android:src="@drawable/ic_more" />
 
             <TextView
-                android:id="@+id/lblMoreInfo"
+                android:id="@+id/lblMoreInfoActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="اطلاعات اضافه"
@@ -479,7 +477,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lblMoreTitle"
+                android:id="@+id/lblMoreTitleActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -488,7 +486,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtMoreTitle"
+                android:id="@+id/txtMoreTitleActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -498,7 +496,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblMoreScore"
+                android:id="@+id/lblMoreScoreActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -507,7 +505,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtMoreScore"
+                android:id="@+id/txtMoreScoreActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -517,7 +515,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblMoreType"
+                android:id="@+id/lblMoreTypeActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -526,7 +524,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtMoreType"
+                android:id="@+id/txtMoreTypeActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -536,7 +534,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblMoreMainInfo"
+                android:id="@+id/lblMoreMainInfoActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -545,7 +543,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtMoreMainInfo"
+                android:id="@+id/txtMoreMainInfoActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -563,7 +561,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgSimilarInfo"
+                android:id="@+id/imgSimilarInfoActNewsContentEdit"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
@@ -571,7 +569,7 @@
                 android:src="@drawable/ic_more" />
 
             <TextView
-                android:id="@+id/lblSimilarInfo"
+                android:id="@+id/lblSimilarInfoActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="اطلاعات مشایه"
@@ -595,7 +593,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lblSimilarTitle"
+                android:id="@+id/lblSimilarTitleActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -604,7 +602,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtSimilarTitle"
+                android:id="@+id/txtSimilarTitleActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -614,7 +612,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblSimilarScore"
+                android:id="@+id/lblSimilarScoreActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -623,7 +621,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtSimilarScore"
+                android:id="@+id/txtSimilarScoreActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -641,7 +639,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imgConnectionInfo"
+                android:id="@+id/imgConnectionInfoActNewsContentEdit"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginLeft="5dp"
@@ -649,7 +647,7 @@
                 android:src="@drawable/ic_more" />
 
             <TextView
-                android:id="@+id/lblConnectionInfo"
+                android:id="@+id/lblConnectionInfoActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ارتباط با دیگر ماژولها"
@@ -673,7 +671,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lblConnectionTitle"
+                android:id="@+id/lblConnectionTitleActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -682,7 +680,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtConnectionTitle"
+                android:id="@+id/txtConnectionTitleActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -692,7 +690,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblConnectionModel"
+                android:id="@+id/lblConnectionModelActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -701,7 +699,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtConnectionModel"
+                android:id="@+id/txtConnectionModelActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -711,7 +709,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblConnectionRelative"
+                android:id="@+id/lblConnectionRelativeActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -720,7 +718,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/txtConnectionRelative"
+                android:id="@+id/txtConnectionRelativeActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -730,7 +728,7 @@
                 android:textSize="14sp" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/btn"
+                android:id="@+id/btnActNewsContentEdit"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="15dp"
@@ -740,7 +738,7 @@
                 app:cardCornerRadius="10dp">
 
                 <TextView
-                    android:id="@+id/txtBtn"
+                    android:id="@+id/txtBtnActNewsContentEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
