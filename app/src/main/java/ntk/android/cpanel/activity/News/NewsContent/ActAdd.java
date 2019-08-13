@@ -3,25 +3,15 @@ package ntk.android.cpanel.activity.News.NewsContent;
 import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.ContentUris;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,13 +38,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.android.cpanel.R;
+import ntk.android.cpanel.activity.ActMain;
 import ntk.android.cpanel.config.ConfigRestHeader;
 import ntk.android.cpanel.config.ConfigStaticValue;
 import ntk.android.cpanel.utillity.AppUtill;
 import ntk.android.cpanel.utillity.EasyPreference;
 import ntk.android.cpanel.utillity.FontManager;
 import ntk.base.api.file.interfase.IFile;
-import ntk.base.api.news.entity.NewsCategory;
 import ntk.base.api.news.interfase.INewsCategory;
 import ntk.base.api.news.interfase.INewsContent;
 import ntk.base.api.news.model.NewsCategoryResponse;
@@ -103,8 +93,8 @@ public class ActAdd extends AppCompatActivity {
             R.id.spinnerCategoryActNewsContentAdd})
     List<Spinner> spinner;
 
-    private NewsCategory categoryValue;
-    private int statusValue = 0;
+    private Long categoryValue;
+    private int statusValue = 1;
     private static final int READ_REQUEST_CODE = 1520;
     private Calendar myCalendar = Calendar.getInstance();
 
@@ -129,7 +119,7 @@ public class ActAdd extends AppCompatActivity {
         spinner.get(0).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                statusValue = position;
+                statusValue = position + 1;
             }
 
             @Override
@@ -155,13 +145,17 @@ public class ActAdd extends AppCompatActivity {
         request.RecordStatus = statusValue;
         request.Title = txts.get(0).getText().toString();
         request.Description = txts.get(1).getText().toString();
-        request.Category=categoryValue;
-        request.FromDate=lbls.get(19).toString();
-        request.ExpireDate=lbls.get(20).toString();
+        request.Geolocationlatitude=32.658066;
+        request.Geolocationlongitude=51.6693815;
+        request.CreatedDate= "2019-08-13T05:24:45.864983Z";
+        request.LinkCategoryId = String.valueOf(categoryValue);
+        request.FromDate = lbls.get(19).toString();
+        request.ExpireDate = lbls.get(20).toString();
         RetrofitManager manager = new RetrofitManager(this);
         INewsContent iNewsContent = manager.getCachedRetrofit(new ConfigStaticValue(this).GetApiBaseUrl()).create(INewsContent.class);
         Map<String, String> headers = new ConfigRestHeader().GetHeaders(this);
         headers.put("Authorization", EasyPreference.with(this).getString(EasyPreference.SITE_COOKE, ""));
+        headers.put("Cookie", EasyPreference.with(this).getString(EasyPreference.LOGIN_COOKE, ""));
         Observable<NewsContentResponse> observable = iNewsContent.Add(headers, request);
         observable.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -178,6 +172,7 @@ public class ActAdd extends AppCompatActivity {
                             finish();
                         } else {
                             Toast.makeText(ActAdd.this, "مجددا تلاش کنید", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ActAdd.this, response.ErrorMessage, Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -220,7 +215,7 @@ public class ActAdd extends AppCompatActivity {
                             spinner.get(1).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 @Override
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                    categoryValue = response.ListItems.get(position);
+                                    categoryValue = response.ListItems.get(position).Id;
                                 }
 
                                 @Override

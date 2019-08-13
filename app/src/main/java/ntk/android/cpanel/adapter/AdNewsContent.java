@@ -95,9 +95,44 @@ public class AdNewsContent extends RecyclerView.Adapter<AdNewsContent.ViewHolder
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newsDelete(list.get(position), position);
+                getViewModel(list.get(position).Id, position);
             }
         });
+    }
+
+    private void getViewModel(Long id, int position) {
+        RetrofitManager manager = new RetrofitManager(context);
+        INewsContent iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INewsContent.class);
+        Map<String, String> headers = new HashMap<>();
+        headers = configRestHeader.GetHeaders(context);
+        headers.put("Authorization", EasyPreference.with(context).getString(EasyPreference.SITE_COOKE, ""));
+        headers.put("Cookie", EasyPreference.with(context).getString(EasyPreference.LOGIN_COOKE, ""));
+        Observable<NewsContentResponse> call = iNews.GetViewModel(headers, String.valueOf(id));
+        call.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<NewsContentResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(NewsContentResponse response) {
+                        if (response.IsSuccess) {
+                            newsDelete(response.Item, position);
+                        } else {
+                            Toast.makeText(context, "مجددا تلاش کنید", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
     }
 
     private void newsDelete(NewsContent model, int position) {
@@ -105,7 +140,8 @@ public class AdNewsContent extends RecyclerView.Adapter<AdNewsContent.ViewHolder
         INewsContent iNews = manager.getRetrofit(configStaticValue.ApiBaseUrl).create(INewsContent.class);
         Map<String, String> headers = new HashMap<>();
         headers = configRestHeader.GetHeaders(context);
-        headers.put("Authorization", EasyPreference.with(context).getString(EasyPreference.LOGIN_COOKE, ""));
+        headers.put("Authorization", EasyPreference.with(context).getString(EasyPreference.SITE_COOKE, ""));
+        headers.put("Cookie", EasyPreference.with(context).getString(EasyPreference.LOGIN_COOKE, ""));
         Observable<NewsContentResponse> call = iNews.Delete(headers, model);
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
