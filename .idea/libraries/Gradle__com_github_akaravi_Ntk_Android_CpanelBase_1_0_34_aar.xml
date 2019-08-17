@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.akaravi:Ntk.Android.CpanelBase:1.0.34@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1eb851a22d3979cf0ae47baa80172db5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1eb851a22d3979cf0ae47baa80172db5/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.akaravi/Ntk.Android.CpanelBase/1.0.34/65594d50f4ca35da11ce5c396782c3d478a581b8/Ntk.Android.CpanelBase-1.0.34-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

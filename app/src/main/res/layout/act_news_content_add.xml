@@ -51,6 +51,22 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/lblCategoryActNewsContentAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="دسته بندی اخبار"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp" />
+
+            <Spinner
+                android:id="@+id/spinnerCategoryActNewsContentAdd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/edit_text_background" />
+
+            <TextView
                 android:id="@+id/lblStatusActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,20 +121,24 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblCategoryActNewsContentAdd"
+                android:id="@+id/lblCompleteActNewsContentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="دسته بندی اخبار"
+                android:text="محتوای کامل"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp" />
 
-            <Spinner
-                android:id="@+id/spinnerCategoryActNewsContentAdd"
+            <EditText
+                android:id="@+id/txtCompleteActNewsContentAdd"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background" />
+                android:background="@drawable/edit_text_background"
+                android:minLines="5"
+                android:padding="8dp"
+                android:textColor="@color/colorGray"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/lblStartDateActNewsContentAdd"
@@ -220,24 +240,61 @@
                 android:textColor="@color/colorGray"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/lblStickerActNewsContentAdd"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="برچسب ها"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+                android:layout_marginBottom="8dp">
 
-            <EditText
-                android:id="@+id/txtStickerActNewsContentAdd"
+                <TextView
+                    android:id="@+id/lblStickerActNewsContentAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="برچسب ها"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerSelectedStickerActNewsContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@+id/lblStickerActNewsContentAdd" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/txtStickerActNewsContentAdd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:maxLength="20"
+                    android:paddingLeft="36dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/colorGray"
+                    android:textSize="14sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressStickerActNewsContentAdd"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:visibility="gone"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerStickerActNewsContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
+                android:layout_marginBottom="15dp" />
 
             <TextView
                 android:id="@+id/lblKeyActNewsContentAdd"
@@ -248,34 +305,40 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/txtKeyActNewsContentAdd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/lblCompleteActNewsContentAdd"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="محتوای کامل"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+                android:layout_marginBottom="8dp">
 
-            <EditText
-                android:id="@+id/txtCompleteActNewsContentAdd"
+                <EditText
+                    android:id="@+id/txtKeyActNewsContentAdd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:maxLength="20"
+                    android:paddingLeft="36dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/colorGray"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/imgKeyAddActNewsContentAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_done"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerKeyActNewsContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
+                android:layout_marginBottom="8dp" />
         </LinearLayout>
 
         <LinearLayout

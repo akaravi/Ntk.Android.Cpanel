@@ -28,8 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="12d2eb" />
-                            <entry key="outputName" value="ic_clear" />
+                            <entry key="color" value="ffffff" />
+                            <entry key="outputName" value="ic_clear_white" />
                             <entry key="sourceFile" value="C:\Users\z.sadeghi" />
                           </map>
                         </option>
