@@ -3,10 +3,17 @@ package ntk.android.cpanel.activity.News.NewsContent;
 import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,16 +22,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,6 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -44,9 +52,11 @@ import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.Nullable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ntk.android.cpanel.R;
+import ntk.android.cpanel.adapter.AdAttach;
 import ntk.android.cpanel.adapter.AdKeyWord;
 import ntk.android.cpanel.adapter.AdSelectedTag;
 import ntk.android.cpanel.adapter.AdTag;
@@ -93,7 +103,10 @@ public class ActAdd extends AppCompatActivity {
             R.id.lblLocationActNewsContentAdd,
             R.id.txtBtnActNewsContentAdd,
             R.id.startDateActNewsContentAdd,
-            R.id.EndDateActNewsContentAdd,})
+            R.id.EndDateActNewsContentAdd,
+            R.id.txtMainImageActNewsContentAdd,
+            R.id.txtPodcastActNewsContentAdd,
+            R.id.txtMovieActNewsContentAdd})
     List<TextView> lbls;
 
     @BindViews({R.id.txtTitleActNewsContentAdd,
@@ -110,19 +123,26 @@ public class ActAdd extends AppCompatActivity {
 
     @BindViews({R.id.recyclerStickerActNewsContent,
             R.id.recyclerKeyActNewsContent,
-            R.id.recyclerSelectedStickerActNewsContent})
+            R.id.recyclerSelectedStickerActNewsContent,
+            R.id.recyclerAttachActNewsContentAdd})
     List<RecyclerView> Rv;
 
     private Long categoryValue;
     private int statusValue = 1;
     private static final int READ_REQUEST_CODE = 1520;
+    private static final int MAIN_IMAGE_REQUEST_CODE = 558;
+    private static final int PODCAST_REQUEST_CODE = 874;
+    private static final int MOVIE_REQUEST_CODE = 457;
+    private static final int EXTRA_FILE_REQUEST_CODE = 336;
     private Calendar myCalendar = Calendar.getInstance();
     private NewsContentAddRequest request = new NewsContentAddRequest();
     private List<NewsTag> tagsList = new ArrayList<>();
     private List<NewsTag> selectedTagsList = new ArrayList<>();
     private List<String> keyList = new ArrayList<>();
+    private List<String> attachList = new ArrayList<>();
     private AdTag adTag;
     private AdKeyWord adKeyWord;
+    private AdAttach adAttach;
     private AdSelectedTag adSelectedTag;
 
     @Override
@@ -144,6 +164,9 @@ public class ActAdd extends AppCompatActivity {
         adKeyWord = new AdKeyWord(ActAdd.this, keyList);
         Rv.get(1).setLayoutManager(new LinearLayoutManager(ActAdd.this, RecyclerView.HORIZONTAL, false));
         Rv.get(1).setAdapter(adKeyWord);
+        adAttach = new AdAttach(ActAdd.this, attachList);
+        Rv.get(3).setLayoutManager(new LinearLayoutManager(ActAdd.this, RecyclerView.HORIZONTAL, false));
+        Rv.get(3).setAdapter(adAttach);
         List<String> statusList = new ArrayList<>();
         statusList.add("فعال");
         statusList.add("حدف شده");
@@ -294,7 +317,6 @@ public class ActAdd extends AppCompatActivity {
                     @Override
                     public void onNext(NewsContentResponse response) {
                         if (response.IsSuccess) {
-                            addBatch();
                             Toast.makeText(ActAdd.this, "با موفقیت ثبت شد", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
@@ -473,9 +495,9 @@ public class ActAdd extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("*/*");
-            startActivityForResult(intent, READ_REQUEST_CODE);
+            startActivityForResult(intent, MAIN_IMAGE_REQUEST_CODE);
         } else {
-            ActivityCompat.requestPermissions(ActAdd.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 220);
+            ActivityCompat.requestPermissions(ActAdd.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_REQUEST_CODE);
         }
     }
 
@@ -485,9 +507,9 @@ public class ActAdd extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("*/*");
-            startActivityForResult(intent, READ_REQUEST_CODE);
+            startActivityForResult(intent, PODCAST_REQUEST_CODE);
         } else {
-            ActivityCompat.requestPermissions(ActAdd.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 220);
+            ActivityCompat.requestPermissions(ActAdd.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_REQUEST_CODE);
         }
     }
 
@@ -497,9 +519,9 @@ public class ActAdd extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("*/*");
-            startActivityForResult(intent, READ_REQUEST_CODE);
+            startActivityForResult(intent, MOVIE_REQUEST_CODE);
         } else {
-            ActivityCompat.requestPermissions(ActAdd.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 220);
+            ActivityCompat.requestPermissions(ActAdd.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_REQUEST_CODE);
         }
     }
 
@@ -509,9 +531,9 @@ public class ActAdd extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("*/*");
-            startActivityForResult(intent, READ_REQUEST_CODE);
+            startActivityForResult(intent, EXTRA_FILE_REQUEST_CODE);
         } else {
-            ActivityCompat.requestPermissions(ActAdd.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 220);
+            ActivityCompat.requestPermissions(ActAdd.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_REQUEST_CODE);
         }
     }
 
@@ -519,18 +541,80 @@ public class ActAdd extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode,
                                  Intent resultData) {
-        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Uri uri;
-            if (resultData != null) {
-                uri = resultData.getData();
-                if (uri != null) {
-                    UploadFileToServer(AppUtill.getPath(ActAdd.this, uri));
+        Uri uri;
+        if (resultData != null) {
+            uri = resultData.getData();
+            if (uri != null) {
+                String name = Objects.requireNonNull(uri.getPath()).split("/")[uri.getPath().split("/").length - 1];
+                switch (requestCode) {
+                    case MAIN_IMAGE_REQUEST_CODE:
+                        if (resultCode == RESULT_OK) {
+                            findViewById(R.id.progressMainImageActNewsContentAdd).setVisibility(View.VISIBLE);
+                            findViewById(R.id.imgProgressMainImageActNewsContentAdd).setVisibility(View.GONE);
+                            findViewById(R.id.lblDeleteMainImageActNewsContentAdd).setVisibility(View.GONE);
+                            UploadFileToServer(AppUtill.getPath(ActAdd.this, uri),
+                                    findViewById(R.id.progressMainImageActNewsContentAdd),
+                                    findViewById(R.id.imgProgressMainImageActNewsContentAdd),
+                                    lbls.get(21),
+                                    0);
+                            lbls.get(21).setText(name);
+                        } else {
+                            findViewById(R.id.progressMainImageActNewsContentAdd).setVisibility(View.GONE);
+                            findViewById(R.id.imgProgressMainImageActNewsContentAdd).setVisibility(View.GONE);
+                            findViewById(R.id.lblDeleteMainImageActNewsContentAdd).setVisibility(View.GONE);
+                        }
+                        break;
+                    case PODCAST_REQUEST_CODE:
+                        if (resultCode == RESULT_OK) {
+                            findViewById(R.id.progressPodcastActNewsContentAdd).setVisibility(View.VISIBLE);
+                            findViewById(R.id.imgProgressPodcastActNewsContentAdd).setVisibility(View.GONE);
+                            findViewById(R.id.lblDeletePodcastActNewsContentAdd).setVisibility(View.GONE);
+                            UploadFileToServer(AppUtill.getPath(ActAdd.this, uri),
+                                    findViewById(R.id.progressPodcastActNewsContentAdd),
+                                    findViewById(R.id.imgProgressPodcastActNewsContentAdd),
+                                    lbls.get(22),
+                                    1);
+                            lbls.get(22).setText(name);
+                        } else {
+                            findViewById(R.id.progressPodcastActNewsContentAdd).setVisibility(View.GONE);
+                            findViewById(R.id.imgProgressPodcastActNewsContentAdd).setVisibility(View.GONE);
+                            findViewById(R.id.lblDeletePodcastActNewsContentAdd).setVisibility(View.GONE);
+                        }
+                        break;
+                    case MOVIE_REQUEST_CODE:
+                        if (resultCode == RESULT_OK) {
+                            findViewById(R.id.progressMovieActNewsContentAdd).setVisibility(View.VISIBLE);
+                            findViewById(R.id.imgProgressMovieActNewsContentAdd).setVisibility(View.GONE);
+                            findViewById(R.id.lblDeleteMovieActNewsContentAdd).setVisibility(View.GONE);
+                            UploadFileToServer(AppUtill.getPath(ActAdd.this, uri),
+                                    findViewById(R.id.progressMovieActNewsContentAdd),
+                                    findViewById(R.id.imgProgressMovieActNewsContentAdd),
+                                    lbls.get(23),
+                                    2);
+                            lbls.get(23).setText(name);
+                        } else {
+                            findViewById(R.id.progressMovieActNewsContentAdd).setVisibility(View.GONE);
+                            findViewById(R.id.imgProgressMovieActNewsContentAdd).setVisibility(View.GONE);
+                            findViewById(R.id.lblDeleteMovieActNewsContentAdd).setVisibility(View.GONE);
+                        }
+                        break;
+                    case EXTRA_FILE_REQUEST_CODE:
+                        attachList.add(name);
+                        adAttach.notifyDataSetChanged();
+                        findViewById(R.id.progressAttachActNewsContentAdd).setVisibility(View.VISIBLE);
+                        findViewById(R.id.imgExtraFileAttach).setVisibility(View.GONE);
+                        UploadFileToServer(AppUtill.getPath(ActAdd.this, uri),
+                                findViewById(R.id.progressAttachActNewsContentAdd),
+                                findViewById(R.id.imgExtraFileAttach),
+                                null,
+                                3);
+                        break;
                 }
             }
         }
     }
 
-    private void UploadFileToServer(String url) {
+    private void UploadFileToServer(String url, ProgressBar bar, ImageView img, @Nullable TextView txt, int type) {
         if (AppUtill.isNetworkAvailable(this)) {
             File file = new File(String.valueOf(Uri.parse(url)));
             RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
@@ -546,13 +630,36 @@ public class ActAdd extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onNext(String model) {
-
+                        public void onNext(String s) {
+                            switch (type) {
+                                case 0:
+                                    request.LinkMainImageId = s;
+                                    findViewById(R.id.lblDeleteMainImageActNewsContentAdd).setVisibility(View.VISIBLE);
+                                    break;
+                                case 1:
+                                    request.LinkFilePodcastId = s;
+                                    findViewById(R.id.lblDeletePodcastActNewsContentAdd).setVisibility(View.VISIBLE);
+                                    break;
+                                case 2:
+                                    request.LinkFileMovieId = s;
+                                    findViewById(R.id.lblDeleteMovieActNewsContentAdd).setVisibility(View.VISIBLE);
+                                    break;
+                                case 3:
+                                    if (request.LinkFileIds == null) request.LinkFileIds = s;
+                                    else request.LinkFileIds = request.LinkFileIds + "," + s;
+                                    break;
+                            }
+                            bar.setVisibility(View.GONE);
+                            img.setVisibility(View.VISIBLE);
                         }
 
                         @Override
                         public void onError(Throwable e) {
-
+                            bar.setVisibility(View.GONE);
+                            img.setVisibility(View.GONE);
+                            if (txt != null)
+                                txt.setText("");
+                            Toast.makeText(ActAdd.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -560,9 +667,33 @@ public class ActAdd extends AppCompatActivity {
 
                         }
                     });
-        } else {
-
         }
     }
 
+    @OnClick(R.id.lblDeleteMainImageActNewsContentAdd)
+    public void deleteMainImage() {
+        request.LinkMainImageId = "";
+        findViewById(R.id.progressMainImageActNewsContentAdd).setVisibility(View.GONE);
+        findViewById(R.id.imgProgressMainImageActNewsContentAdd).setVisibility(View.GONE);
+        findViewById(R.id.lblDeleteMainImageActNewsContentAdd).setVisibility(View.GONE);
+        lbls.get(21).setText("");
+    }
+
+    @OnClick(R.id.lblDeletePodcastActNewsContentAdd)
+    public void deletePodcast() {
+        request.LinkFilePodcastId = "";
+        findViewById(R.id.progressPodcastActNewsContentAdd).setVisibility(View.GONE);
+        findViewById(R.id.imgProgressPodcastActNewsContentAdd).setVisibility(View.GONE);
+        findViewById(R.id.lblDeletePodcastActNewsContentAdd).setVisibility(View.GONE);
+        lbls.get(22).setText("");
+    }
+
+    @OnClick(R.id.lblDeleteMovieActNewsContentAdd)
+    public void deleteMovie() {
+        request.LinkFileMovieId = "";
+        findViewById(R.id.progressMovieActNewsContentAdd).setVisibility(View.GONE);
+        findViewById(R.id.imgProgressMovieActNewsContentAdd).setVisibility(View.GONE);
+        findViewById(R.id.lblDeleteMovieActNewsContentAdd).setVisibility(View.GONE);
+        lbls.get(23).setText("");
+    }
 }

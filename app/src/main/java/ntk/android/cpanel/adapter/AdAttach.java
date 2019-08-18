@@ -16,27 +16,26 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.android.cpanel.R;
 import ntk.android.cpanel.utillity.FontManager;
-import ntk.base.api.news.entity.NewsTag;
 
-public class AdSelectedTag extends RecyclerView.Adapter<AdSelectedTag.SelectedTagViewHolder> {
+public class AdAttach extends RecyclerView.Adapter<AdAttach.AttachViewHolder> {
 
     private Context context;
-    private List<NewsTag> list;
+    private List<String> list;
 
-    public AdSelectedTag(Context context, List<NewsTag> list) {
+    public AdAttach(Context context, List<String> list) {
         this.context = context;
         this.list = list;
     }
 
     @NonNull
     @Override
-    public SelectedTagViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new SelectedTagViewHolder(LayoutInflater.from(context).inflate(R.layout.row_selected_tag, parent, false));
+    public AdAttach.AttachViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new AdAttach.AttachViewHolder(LayoutInflater.from(context).inflate(R.layout.row_selected_tag, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SelectedTagViewHolder holder, int position) {
-        holder.txt.setText(list.get(position).Title);
+    public void onBindViewHolder(@NonNull AdAttach.AttachViewHolder holder, int position) {
+        holder.txt.setText(list.get(position));
         holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +51,7 @@ public class AdSelectedTag extends RecyclerView.Adapter<AdSelectedTag.SelectedTa
         return list.size();
     }
 
-    class SelectedTagViewHolder extends RecyclerView.ViewHolder {
+    class AttachViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.txtRowSelectedTag)
         TextView txt;
@@ -60,7 +59,7 @@ public class AdSelectedTag extends RecyclerView.Adapter<AdSelectedTag.SelectedTa
         @BindView(R.id.imgRowSelectedTag)
         ImageView img;
 
-        SelectedTagViewHolder(@NonNull View itemView) {
+        AttachViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             txt.setTypeface(FontManager.GetTypeface(context, FontManager.IranSans));
