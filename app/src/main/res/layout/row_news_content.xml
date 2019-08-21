@@ -36,10 +36,13 @@
 
                 <TextView
                     android:id="@+id/txtNewsContentTitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_margin="8dp"
+                    android:layout_toRightOf="@id/imgNewsContentEdit"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="عنوان"
                     android:textColor="#000"
                     android:textSize="16sp" />
@@ -52,8 +55,19 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_toRightOf="@+id/imgNewsContentDelete"
+                    android:layout_toRightOf="@+id/imgNewsContentComment"
                     android:src="@drawable/ic_edit" />
+
+                <ImageView
+                    android:id="@+id/imgNewsContentComment"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toRightOf="@+id/imgNewsContentDelete"
+                    android:src="@drawable/ic_comment" />
 
                 <ImageView
                     android:id="@+id/imgNewsContentDelete"
@@ -65,6 +79,17 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:src="@drawable/ic_delete" />
+
+                <ProgressBar
+                    android:id="@+id/progressNewsContentDelete"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:visibility="gone" />
             </RelativeLayout>
 
             <View
@@ -148,6 +173,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="توضیحات : "
                     android:textColor="@color/colorGray"
                     android:textSize="14sp" />
@@ -158,6 +185,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:ellipsize="end"
+                    android:maxLines="3"
                     android:text="متن : "
                     android:textColor="@color/colorGray"
                     android:textSize="14sp" />

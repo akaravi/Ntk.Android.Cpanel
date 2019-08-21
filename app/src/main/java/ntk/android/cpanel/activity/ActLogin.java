@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,8 +42,13 @@ public class ActLogin extends AppCompatActivity {
 
     @BindView(R.id.lblLoginActLogin)
     TextView lblLogin;
+    @BindView(R.id.lblSiteLoginActLogin)
+    TextView lblSiteLogin;
     @BindView(R.id.txtRememberMe)
     TextView lblRememberMe;
+    @BindView(R.id.txtLoginActLogin)
+    TextView txtLogin;
+
     @BindView(R.id.txtUsernameActLogin)
     EditText Username;
     @BindView(R.id.txtPasswordActLogin)
@@ -52,7 +58,7 @@ public class ActLogin extends AppCompatActivity {
     @BindView(R.id.checkboxRememberMeActLogin)
     CheckBox rememberMe;
     @BindView(R.id.btnLoginActLogin)
-    Button btnLogin;
+    CardView btnLogin;
     private List<String> lagList = new ArrayList<String>();
     private int lagValue = 0;
     private ConfigStaticValue configStaticValue = new ConfigStaticValue(this);
@@ -67,11 +73,12 @@ public class ActLogin extends AppCompatActivity {
     }
 
     private void initialization() {
-        Username.setTypeface(FontManager.GetTypeface(this,FontManager.IranSans));
-        Password.setTypeface(FontManager.GetTypeface(this,FontManager.IranSans));
-        lblLogin.setTypeface(FontManager.GetTypeface(this,FontManager.IranSans));
-        lblRememberMe.setTypeface(FontManager.GetTypeface(this,FontManager.IranSans));
-        btnLogin.setTypeface(FontManager.GetTypeface(this,FontManager.IranSans));
+        Username.setTypeface(FontManager.GetTypeface(this, FontManager.IranSans));
+        Password.setTypeface(FontManager.GetTypeface(this, FontManager.IranSans));
+        lblLogin.setTypeface(FontManager.GetTypeface(this, FontManager.IranSans));
+        lblSiteLogin.setTypeface(FontManager.GetTypeface(this, FontManager.Eutemia));
+        lblRememberMe.setTypeface(FontManager.GetTypeface(this, FontManager.IranSans));
+        txtLogin.setTypeface(FontManager.GetTypeface(this, FontManager.IranSans));
         rememberMe.setChecked(true);
         if (EasyPreference.with(ActLogin.this).getBoolean("RememberMe", true)) {
             Username.setText(EasyPreference.with(this).getString(EasyPreference.USERNAME, ""));

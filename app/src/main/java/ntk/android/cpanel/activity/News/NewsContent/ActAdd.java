@@ -1,29 +1,19 @@
 package ntk.android.cpanel.activity.News.NewsContent;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.ContentUris;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -45,7 +35,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -69,10 +58,13 @@ import ntk.base.api.file.interfase.IFile;
 import ntk.base.api.news.entity.NewsTag;
 import ntk.base.api.news.interfase.INewsCategory;
 import ntk.base.api.news.interfase.INewsContent;
+import ntk.base.api.news.interfase.INewsContentTag;
 import ntk.base.api.news.interfase.INewsTag;
 import ntk.base.api.news.model.NewsCategoryResponse;
-import ntk.base.api.news.model.NewsContentAddRequest;
+import ntk.base.api.news.model.NewsContentAddAndEditRequest;
 import ntk.base.api.news.model.NewsContentResponse;
+import ntk.base.api.news.model.NewsContentTagAddBatchRequest;
+import ntk.base.api.news.model.NewsContentTagResponse;
 import ntk.base.api.news.model.NewsGetAllRequest;
 import ntk.base.api.news.model.NewsTagResponse;
 import ntk.base.api.news.model.NewsTagSearchRequest;
@@ -129,13 +121,13 @@ public class ActAdd extends AppCompatActivity {
 
     private Long categoryValue;
     private int statusValue = 1;
-    private static final int READ_REQUEST_CODE = 1520;
-    private static final int MAIN_IMAGE_REQUEST_CODE = 558;
-    private static final int PODCAST_REQUEST_CODE = 874;
-    private static final int MOVIE_REQUEST_CODE = 457;
-    private static final int EXTRA_FILE_REQUEST_CODE = 336;
+    public static final int READ_REQUEST_CODE = 1520;
+    public static final int MAIN_IMAGE_REQUEST_CODE = 558;
+    public static final int PODCAST_REQUEST_CODE = 874;
+    public static final int MOVIE_REQUEST_CODE = 457;
+    public static final int EXTRA_FILE_REQUEST_CODE = 336;
     private Calendar myCalendar = Calendar.getInstance();
-    private NewsContentAddRequest request = new NewsContentAddRequest();
+    private NewsContentAddAndEditRequest mainRequest = new NewsContentAddAndEditRequest();
     private List<NewsTag> tagsList = new ArrayList<>();
     private List<NewsTag> selectedTagsList = new ArrayList<>();
     private List<String> keyList = new ArrayList<>();
@@ -293,19 +285,19 @@ public class ActAdd extends AppCompatActivity {
     }
 
     private void getData() {
-        request.RecordStatus = statusValue;
-        request.Title = txts.get(0).getText().toString();
-        request.Description = txts.get(1).getText().toString();
-        request.LinkCategoryId = String.valueOf(categoryValue);
-        request.Source = txts.get(2).getText().toString();
-        request.Body = txts.get(5).getText().toString();
-        request.Keyword = keyList.toString().replace(" ", "").replace("[", "").replace("]", "");
+        mainRequest.RecordStatus = statusValue;
+        mainRequest.Title = txts.get(0).getText().toString();
+        mainRequest.Description = txts.get(1).getText().toString();
+        mainRequest.LinkCategoryId = String.valueOf(categoryValue);
+        mainRequest.Source = txts.get(2).getText().toString();
+        mainRequest.Body = txts.get(5).getText().toString();
+        mainRequest.Keyword = keyList.toString().replace(" ", "").replace("[", "").replace("]", "");
         RetrofitManager manager = new RetrofitManager(this);
         INewsContent iNewsContent = manager.getCachedRetrofit(new ConfigStaticValue(this).GetApiBaseUrl()).create(INewsContent.class);
         Map<String, String> headers = new ConfigRestHeader().GetHeaders(this);
         headers.put("Authorization", EasyPreference.with(this).getString(EasyPreference.SITE_COOKE, ""));
         headers.put("Cookie", EasyPreference.with(this).getString(EasyPreference.LOGIN_COOKE, ""));
-        Observable<NewsContentResponse> observable = iNewsContent.Add(headers, request);
+        Observable<NewsContentResponse> observable = iNewsContent.Add(headers, mainRequest);
         observable.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<NewsContentResponse>() {
@@ -338,31 +330,24 @@ public class ActAdd extends AppCompatActivity {
     }
 
     private void addBatch() {
-        request.RecordStatus = statusValue;
-        request.Title = txts.get(0).getText().toString();
-        request.Description = txts.get(1).getText().toString();
-        request.LinkCategoryId = String.valueOf(categoryValue);
-        request.Source = txts.get(2).getText().toString();
-        request.Body = txts.get(5).getText().toString();
-        request.Keyword = keyList.toString().replace(" ", "").replace("[", "").replace("]", "");
+        NewsContentTagAddBatchRequest request=new NewsContentTagAddBatchRequest();
         RetrofitManager manager = new RetrofitManager(this);
-        INewsContent iNewsContent = manager.getCachedRetrofit(new ConfigStaticValue(this).GetApiBaseUrl()).create(INewsContent.class);
+        INewsContentTag iNews = manager.getCachedRetrofit(new ConfigStaticValue(this).GetApiBaseUrl()).create(INewsContentTag.class);
         Map<String, String> headers = new ConfigRestHeader().GetHeaders(this);
         headers.put("Authorization", EasyPreference.with(this).getString(EasyPreference.SITE_COOKE, ""));
         headers.put("Cookie", EasyPreference.with(this).getString(EasyPreference.LOGIN_COOKE, ""));
-        Observable<NewsContentResponse> observable = iNewsContent.Add(headers, request);
+        Observable<NewsContentTagResponse> observable = iNews.AddBatch(headers, request);
         observable.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<NewsContentResponse>() {
+                .subscribe(new Observer<NewsContentTagResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(NewsContentResponse response) {
+                    public void onNext(NewsContentTagResponse response) {
                         if (response.IsSuccess) {
-                            addBatch();
                             Toast.makeText(ActAdd.this, "با موفقیت ثبت شد", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
@@ -444,7 +429,7 @@ public class ActAdd extends AppCompatActivity {
                 myCalendar.set(Calendar.MONTH, month);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 lbls.get(19).setText(updateLabel().format(myCalendar.getTime()));
-                request.FromDate = dataFormat().format(myCalendar.getTime());
+                mainRequest.FromDate = dataFormat().format(myCalendar.getTime());
             }
         };
         new DatePickerDialog(ActAdd.this, date, myCalendar
@@ -461,7 +446,7 @@ public class ActAdd extends AppCompatActivity {
                 myCalendar.set(Calendar.MONTH, month);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 lbls.get(20).setText(updateLabel().format(myCalendar.getTime()));
-                request.ExpireDate = dataFormat().format(myCalendar.getTime());
+                mainRequest.ExpireDate = dataFormat().format(myCalendar.getTime());
             }
         };
         new DatePickerDialog(ActAdd.this, date, myCalendar
@@ -633,20 +618,20 @@ public class ActAdd extends AppCompatActivity {
                         public void onNext(String s) {
                             switch (type) {
                                 case 0:
-                                    request.LinkMainImageId = s;
+                                    mainRequest.LinkMainImageId = s;
                                     findViewById(R.id.lblDeleteMainImageActNewsContentAdd).setVisibility(View.VISIBLE);
                                     break;
                                 case 1:
-                                    request.LinkFilePodcastId = s;
+                                    mainRequest.LinkFilePodcastId = s;
                                     findViewById(R.id.lblDeletePodcastActNewsContentAdd).setVisibility(View.VISIBLE);
                                     break;
                                 case 2:
-                                    request.LinkFileMovieId = s;
+                                    mainRequest.LinkFileMovieId = s;
                                     findViewById(R.id.lblDeleteMovieActNewsContentAdd).setVisibility(View.VISIBLE);
                                     break;
                                 case 3:
-                                    if (request.LinkFileIds == null) request.LinkFileIds = s;
-                                    else request.LinkFileIds = request.LinkFileIds + "," + s;
+                                    if (mainRequest.LinkFileIds == null) mainRequest.LinkFileIds = s;
+                                    else mainRequest.LinkFileIds = mainRequest.LinkFileIds + "," + s;
                                     break;
                             }
                             bar.setVisibility(View.GONE);
@@ -672,7 +657,7 @@ public class ActAdd extends AppCompatActivity {
 
     @OnClick(R.id.lblDeleteMainImageActNewsContentAdd)
     public void deleteMainImage() {
-        request.LinkMainImageId = "";
+        mainRequest.LinkMainImageId = "";
         findViewById(R.id.progressMainImageActNewsContentAdd).setVisibility(View.GONE);
         findViewById(R.id.imgProgressMainImageActNewsContentAdd).setVisibility(View.GONE);
         findViewById(R.id.lblDeleteMainImageActNewsContentAdd).setVisibility(View.GONE);
@@ -681,7 +666,7 @@ public class ActAdd extends AppCompatActivity {
 
     @OnClick(R.id.lblDeletePodcastActNewsContentAdd)
     public void deletePodcast() {
-        request.LinkFilePodcastId = "";
+        mainRequest.LinkFilePodcastId = "";
         findViewById(R.id.progressPodcastActNewsContentAdd).setVisibility(View.GONE);
         findViewById(R.id.imgProgressPodcastActNewsContentAdd).setVisibility(View.GONE);
         findViewById(R.id.lblDeletePodcastActNewsContentAdd).setVisibility(View.GONE);
@@ -690,7 +675,7 @@ public class ActAdd extends AppCompatActivity {
 
     @OnClick(R.id.lblDeleteMovieActNewsContentAdd)
     public void deleteMovie() {
-        request.LinkFileMovieId = "";
+        mainRequest.LinkFileMovieId = "";
         findViewById(R.id.progressMovieActNewsContentAdd).setVisibility(View.GONE);
         findViewById(R.id.imgProgressMovieActNewsContentAdd).setVisibility(View.GONE);
         findViewById(R.id.lblDeleteMovieActNewsContentAdd).setVisibility(View.GONE);

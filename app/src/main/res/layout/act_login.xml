@@ -3,100 +3,119 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    android:padding="10dp">
+    android:background="@color/colorAccent">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="30dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/lblLoginActLogin"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Login"
-            android:textColor="#fff"
-            android:textSize="60dp" />
+            android:layout_gravity="center"
+            android:layout_margin="60dp">
 
-        <EditText
-            android:id="@+id/txtUsernameActLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblLoginActLogin"
-            android:layout_margin="30dp"
-            android:background="@drawable/edit_text_background"
-            android:gravity="center"
-            android:hint="نام کاربری"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/lblLoginActLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="NTK"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:textSize="100sp" />
 
-        <EditText
-            android:id="@+id/txtPasswordActLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtUsernameActLogin"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/edit_text_background"
-            android:gravity="center"
-            android:hint="رمز عبور"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/lblSiteLoginActLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblLoginActLogin"
+                android:layout_centerHorizontal="true"
+                android:text="www.oco/admin.ir"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="50sp" />
 
-        <Spinner
-            android:id="@+id/spinnerLagActLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtPasswordActLogin"
-            android:layout_margin="30dp"
-            android:padding="8dp"
-            android:background="@drawable/edit_text_background"
-            android:gravity="center" />
+            <EditText
+                android:id="@+id/txtUsernameActLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblSiteLoginActLogin"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/login_edit_text_background"
+                android:gravity="center"
+                android:hint="نام کاربری"
+                android:inputType="textEmailAddress"
+                android:padding="12dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
-        <CheckBox
-            android:id="@+id/checkboxRememberMeActLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/spinnerLagActLogin"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="30dp"
-            android:checked="true"
-            app:buttonTint="#FFF" />
+            <EditText
+                android:id="@+id/txtPasswordActLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtUsernameActLogin"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/login_edit_text_background"
+                android:gravity="center"
+                android:hint="رمز عبور"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txtRememberMe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/spinnerLagActLogin"
-            android:layout_toLeftOf="@+id/checkboxRememberMeActLogin"
-            android:fontFamily="sans-serif"
-            android:text="مرا به خاطر بسپار"
-            android:textColor="#FFF"
-            android:textSize="20sp" />
+            <Spinner
+                android:id="@+id/spinnerLagActLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtPasswordActLogin"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/login_edit_text_background"
+                android:gravity="center"
+                android:padding="10dp" />
 
-        <Button
-            android:id="@+id/btnLoginActLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/checkboxRememberMeActLogin"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/edit_text_background"
-            android:gravity="center"
-            android:text="ورود"
-            android:textAllCaps="false"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
-    </RelativeLayout>
+            <CheckBox
+                android:id="@+id/checkboxRememberMeActLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinnerLagActLogin"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="30dp"
+                android:checked="true"
+                app:buttonTint="#FFF" />
 
+            <TextView
+                android:id="@+id/txtRememberMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinnerLagActLogin"
+                android:layout_toLeftOf="@+id/checkboxRememberMeActLogin"
+                android:fontFamily="sans-serif"
+                android:text="منو یادت نره !"
+                android:textColor="#FFF"
+                android:textSize="20sp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnLoginActLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkboxRememberMeActLogin"
+                android:gravity="center"
+                app:cardElevation="5dp"
+                android:layout_marginBottom="30dp"
+                app:cardBackgroundColor="@color/colorWhite"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:id="@+id/txtLoginActLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="ورود"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

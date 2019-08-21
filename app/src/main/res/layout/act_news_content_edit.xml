@@ -51,6 +51,22 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/lblCategoryActNewsContentEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="دسته بندی اخبار"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp" />
+
+            <Spinner
+                android:id="@+id/spinnerCategoryActNewsContentEdit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/edit_text_background" />
+
+            <TextView
                 android:id="@+id/lblStatusActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,20 +121,24 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblCategoryActNewsContentEdit"
+                android:id="@+id/lblCompleteActNewsContentEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="دسته بندی"
+                android:text="محتوای کامل"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp" />
 
-            <Spinner
-                android:id="@+id/spinnerCategoryActNewsContentEdit"
+            <EditText
+                android:id="@+id/txtCompleteActNewsContentEdit"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background" />
+                android:background="@drawable/edit_text_background"
+                android:minLines="5"
+                android:padding="8dp"
+                android:textColor="@color/colorGray"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/lblStartDateActNewsContentEdit"
@@ -220,24 +240,61 @@
                 android:textColor="@color/colorGray"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/lblStickerActNewsContentEdit"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="برچسب ها"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+                android:layout_marginBottom="8dp">
 
-            <EditText
-                android:id="@+id/txtStickerActNewsContentEdit"
+                <TextView
+                    android:id="@+id/lblStickerActNewsContentEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="برچسب ها"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerSelectedStickerActNewsContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@+id/lblStickerActNewsContentEdit" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/txtStickerActNewsContentEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:maxLength="20"
+                    android:paddingLeft="36dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/colorGray"
+                    android:textSize="14sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressStickerActNewsContentEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerStickerActNewsContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
+                android:layout_marginBottom="15dp" />
 
             <TextView
                 android:id="@+id/lblKeyActNewsContentEdit"
@@ -248,34 +305,40 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/txtKeyActNewsContentEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/lblCompleteActNewsContentEdit"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="محتوای کامل"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+                android:layout_marginBottom="8dp">
 
-            <EditText
-                android:id="@+id/txtCompleteActNewsContentEdit"
+                <EditText
+                    android:id="@+id/txtKeyActNewsContentEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:maxLength="20"
+                    android:paddingLeft="36dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/colorGray"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/imgKeyAddActNewsContentEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_done"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerKeyActNewsContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
+                android:layout_marginBottom="8dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -318,77 +381,263 @@
             android:layout_marginRight="30dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/lblMainImageActNewsContentEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="عکس اصلی"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
-
-            <EditText
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/lblPodcastActNewsContentEdit"
+                <ImageView
+                    android:id="@+id/imgMainImageAttach"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:rotation="45"
+                    android:src="@drawable/ic_attach" />
+
+                <TextView
+                    android:id="@+id/lblMainImageActNewsContentEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="عکس اصلی"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/lblDeleteMainImageActNewsContentEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/imgMainImageAttach"
+                    android:text="حذف"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="پادکست"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+                android:layout_marginBottom="8dp">
 
-            <EditText
+                <TextView
+                    android:id="@+id/txtMainImageActNewsContentEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:padding="8dp"
+                    android:textColor="@color/colorGray"
+                    android:textSize="14sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressMainImageActNewsContentEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/imgProgressMainImageActNewsContentEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_done"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/lblMovieActNewsContentEdit"
+                <ImageView
+                    android:id="@+id/imgPadcastAttach"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:rotation="45"
+                    android:src="@drawable/ic_attach" />
+
+                <TextView
+                    android:id="@+id/lblPodcastActNewsContentEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="پادکست"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/lblDeletePodcastActNewsContentEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/imgPadcastAttach"
+                    android:text="حذف"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="فیلم"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+                android:layout_marginBottom="8dp">
 
-            <EditText
+                <TextView
+                    android:id="@+id/txtPodcastActNewsContentEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:padding="8dp"
+                    android:textColor="@color/colorGray"
+                    android:textSize="14sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressPodcastActNewsContentEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/imgProgressPodcastActNewsContentEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_done"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/lblAttachActNewsContentEdit"
+                <ImageView
+                    android:id="@+id/imgMovieAttach"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:rotation="45"
+                    android:src="@drawable/ic_attach" />
+
+                <TextView
+                    android:id="@+id/lblMovieActNewsContentEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="فیلم"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/lblDeleteMovieActNewsContentEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/imgMovieAttach"
+                    android:text="حذف"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="فایل های ضمیمه"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content">
 
-            <EditText
+                <TextView
+                    android:id="@+id/txtMovieActNewsContentEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/edit_text_background"
+                    android:padding="8dp"
+                    android:textColor="@color/colorGray"
+                    android:textSize="14sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressMovieActNewsContentEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/imgProgressMovieActNewsContentEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_done"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/edit_text_background"
-                android:padding="8dp"
-                android:textColor="@color/colorGray"
-                android:textSize="14sp" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgExtraFileAttach"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:rotation="45"
+                    android:src="@drawable/ic_attach" />
+
+                <TextView
+                    android:id="@+id/lblAttachActNewsContentEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="فایل های ضمیمه"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressAttachActNewsContentEdit"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerAttachActNewsContentEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
         </LinearLayout>
 
         <LinearLayout
